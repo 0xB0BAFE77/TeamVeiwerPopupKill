@@ -17,7 +17,7 @@
 #SingleInstance, Force
 
 ;Makes sure invisible windows are "seen" by the script.
-DetectHiddenWindows, On
+DetectHiddenWindows, Off
 
 ; Makes a script unconditionally use its own folder as its working directory.
 ; Ensures a consistent starting directory.
@@ -33,6 +33,10 @@ SendMode, Event
 ; SetKeyDelay KeyStrokeDelay, 
 SetKeyDelay 50, 25
 
+; Bundles sys tray icon with exe.
+FileInstall, TVAntiPop.ico, % A_ScriptDir , 1
+
+; Changes sys tra icon
 Menu, Tray, Icon, % "TVAntiPop.ico"
 
 ; Run the scan every 2.25 seconds.
@@ -44,7 +48,7 @@ return
 
 ;============================== Main Script ==============================
 
-TVCheck:	
+TVCheck:
 	; If Sponsored Session and TeamViewer are not the current active window,
 	; then set whatever is active as the "last window open".
 	IfWinNotExist, Sponsored session
@@ -57,6 +61,7 @@ TVCheck:
 	; Now activate whatever the last window was.
 	IfWinExist, Sponsored session
 	{
+		MsgBox Found sponsred
 		Sleep, 250
 		WinActivate, Sponsored session
 		Sleep, 250
@@ -68,6 +73,8 @@ TVCheck:
 	; If TeamViewer window is found, force win close then activate last window.
 	IfWinExist, TeamViewer
 	{
+		Winactivate, TeamViewer
+		MsgBox Found Teamviewere
 		Sleep, 250
 		WinClose, TeamViewer
 		Sleep, 500
