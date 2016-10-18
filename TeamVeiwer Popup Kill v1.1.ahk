@@ -61,8 +61,6 @@ TVCheck:
 	; Now activate whatever the last window was.
 	IfWinExist, Sponsored session
 	{
-		MsgBox Found sponsred
-		Sleep, 250
 		WinActivate, Sponsored session
 		Sleep, 250
 		Send, {Enter}
@@ -73,8 +71,6 @@ TVCheck:
 	; If TeamViewer window is found, force win close then activate last window.
 	IfWinExist, TeamViewer
 	{
-		Winactivate, TeamViewer
-		MsgBox Found Teamviewere
 		Sleep, 250
 		WinClose, TeamViewer
 		Sleep, 500
